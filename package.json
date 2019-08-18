@@ -1,6 +1,6 @@
 {
   "name": "generator-layout",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "create a basic boilerplaite for making a layout",
   "homepage": "",
   "author": {
@@ -13,8 +13,9 @@
   ],
   "main": "generators/index.js",
   "keywords": [
-    "",
-    "yeoman-generator"
+    "layout boilerplate",
+    "yeoman-generator",
+    "html template"
   ],
   "devDependencies": {
     "yeoman-test": "^1.7.0",
