@@ -13,8 +13,9 @@
   ],
   "main": "generators/index.js",
   "keywords": [
-    "",
-    "yeoman-generator"
+    "layout boilerplate",
+    "yeoman-generator",
+    "html template"
   ],
   "devDependencies": {
     "yeoman-test": "^1.7.0",
