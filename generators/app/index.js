@@ -93,6 +93,7 @@ module.exports = class extends Generator {
       copy("gulp-tasks/html.js", ctx);
     }
 
+    copy("src/styles/style.css", ctx, "public/styles/style.css");
     if (!props.prePros) {
       copy("src/styles/style.css", ctx);
       copy("gulp-tasks/css.js", ctx);

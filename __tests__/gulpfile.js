@@ -81,8 +81,9 @@ describe("gulpfile", () => {
       assert.file([`${tasksFolder}js.js`]);
       assert.fileContent(file, "const js = require('./gulp-tasks/js');");
       assert.fileContent(file, "gulp.task('js', js);");
-      assert.fileContent(file, "parallelTasks.push('js')");
-      assert.fileContent(file, "gulp.watch('*.js').on('change', browserSync.reload);");
+      assert.fileContent(file, "tasks.unshift('js')");
+      assert.fileContent(file, "tasks.push('js')");
+      assert.fileContent(file, "gulp.watch('public/js/*.js').on('change', browserSync.reload);");
       done();
     })
   })

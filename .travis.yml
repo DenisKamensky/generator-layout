@@ -1,5 +1,11 @@
 language: node_js
 node_js: "stable"
-install: "npm i"
+before_script: "npm install"
 script: "npm test"
 after_script: cat ./coverage/lcov.info | coveralls
+notifications:
+  email:
+    recipients:
+    - kengji45@gmail.com
+    on_success: never
+    on_failure: always
