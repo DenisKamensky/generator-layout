@@ -1,0 +1,10 @@
+include ./mixins/head.pug
+doctype html
+html
+  +head("<%= name %>", "style")
+  body
+    h1 hello
+
+    <% if(js) { %>
+    script(src="js/index.js")
+    <% } %>
