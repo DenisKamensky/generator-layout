@@ -87,4 +87,17 @@ describe("gulpfile", () => {
       done();
     })
   })
+
+  it("should add assets task", (done) => {
+    helpers
+      .run(path.join(__dirname, "../generators/app"))
+      .withPrompts(Object.assign({}, prompts, {assets: true}))
+      .then(() => {
+        assert.file([`${tasksFolder}js.js`]);
+        assert.fileContent(file, 'const assets = require("./gulp-tasks/assets");');
+        assert.fileContent(file, "gulp.task('assets', assets);");
+        assert.fileContent(file, "gulp.watch('public/assets/**/*.*').on('change', browserSync.reload);");
+        done();
+      })
+  })
 });

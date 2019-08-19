@@ -112,7 +112,8 @@ module.exports = class extends Generator {
         prepros: "prePros",
         preProsType: "preProsType",
         pug: "pug",
-        js: "js"
+        js: "js",
+        assets: "assets"
       },
       ctx
     );
@@ -125,6 +126,11 @@ module.exports = class extends Generator {
       copy("src/js/index.js", ctx);
       copy("gulp-tasks/js.js", ctx);
       copy("src/js/index.js", ctx, "public/js/index.js");
+    }
+
+    if (props.assets) {
+      copy("src/assets/.gitkeep", ctx);
+      copy("gulp-tasks/assets.js", ctx);
     }
   }
 
