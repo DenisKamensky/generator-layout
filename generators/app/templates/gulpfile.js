@@ -7,11 +7,13 @@ const del = require("del");
 const revCollector = require('gulp-rev-collector');
 const html = require('./gulp-tasks/<% if(pug){ %>pug<% } else { %>html<% } %>')
 <% if(preProsType === 'less') {%>const styles = require("./gulp-tasks/less")<% } else if(preProsType){%>const styles = require("./gulp-tasks/scss")<%} else {%>const styles = require("./gulp-tasks/css");<%}%>;
+<%if (assets){%>const assets = require("./gulp-tasks/assets");<%}%>
 const rev = require('gulp-rev');
 <%if(js) {%>
 const js = require('./gulp-tasks/js');
 gulp.task('js', js);
 <%}%>
+<%if (assets){%>gulp.task('assets', assets);<%}%>
 gulp.task('html', html);
 gulp.task('styles', styles(browserSync));
 
@@ -28,6 +30,10 @@ gulp.task('server', () => {
   gulp.watch('src/styles/**/**.{scss,sass}', gulp.series('styles'));
   <% } else { %>
   gulp.watch('src/styles/**/**.less', gulp.series('styles'));
+  <%}%>
+  <%if (assets){%>
+  gulp.watch('src/assets/**/*.*').on('change', gulp.series('assets'));
+  gulp.watch('public/assets/**/*.*').on('change', browserSync.reload);
   <%}%>
   <% if(js) {%>gulp.watch('public/js/*.js').on('change', browserSync.reload);<%}%>
   gulp.watch('<%if(pug){%>src/templates/**/**.pug<%} else {%>src/*.html<%}%>', gulp.series('html'));
@@ -57,8 +63,8 @@ const tasks = (() => {
     ];
     <%if(js){%>tasks.push('js');<%}%>
     tasks.push('rev');
+    <% if(assets) {%>tasks.push('assets')<%}%>
   }
-
   return tasks;
 })()
 
